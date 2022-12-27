@@ -10,19 +10,20 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class ApiV2ExceptionController {
 
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(IllegalArgumentException.class)
-    public ErrorResult illeglExceptionHandler(IllegalArgumentException e) {
-        log.error("[exceptionHandler] ex", e);
-        return new ErrorResult("BAD", e.getMessage());  // RestController 이기 때문에 json으로 반환
-    }
-
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    @ExceptionHandler(Exception.class)
-    public ErrorResult exHandler(Exception e) { // 정의되지 않은 에러들이 모두 넘어와서 처리(파라메터의 자식까지 처리)
-        log.error("[exceptionHandler] ex", e);
-        return new ErrorResult("EX", "내부 에러");
-    }
+    // ErrorHandling ControllerAdvice로 이동
+//    @ResponseStatus(HttpStatus.BAD_REQUEST)
+//    @ExceptionHandler(IllegalArgumentException.class)
+//    public ErrorResult illeglExceptionHandler(IllegalArgumentException e) {
+//        log.error("[exceptionHandler] ex", e);
+//        return new ErrorResult("BAD", e.getMessage());  // RestController 이기 때문에 json으로 반환
+//    }
+//
+//    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+//    @ExceptionHandler(Exception.class)
+//    public ErrorResult exHandler(Exception e) { // 정의되지 않은 에러들이 모두 넘어와서 처리(파라메터의 자식까지 처리)
+//        log.error("[exceptionHandler] ex", e);
+//        return new ErrorResult("EX", "내부 에러");
+//    }
 
     @GetMapping("/api2/members/{id}")
     public MemberDto getMember(@PathVariable("id") String id) {
