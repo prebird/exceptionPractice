@@ -3,15 +3,14 @@ package com.example.exceptionPractice.api;
 import com.example.exceptionPractice.dto.MemberDto;
 import com.example.exceptionPractice.exHandler.ErrorResult;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
 public class ApiV2ExceptionController {
 
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(IllegalArgumentException.class)
     public ErrorResult illeglExceptionHandler(IllegalArgumentException e) {
         log.error("[exceptionHandler] ex", e);
